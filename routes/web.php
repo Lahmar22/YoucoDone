@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,9 +15,16 @@ Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('register', function () {
-    return view('auth.register');
-})->name('register');
+Route::post('login', [LoginController::class, 'login'])->name('login.post');
+
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('register', [RegisterController::class, 'show'])->name('register');
+
+// Client Routes
+Route::get('restaurants', [ClientController::class, 'index'])->name('client.restaurants');
+Route::get('restaurant/{restaurantId}', [ClientController::class, 'showRestaurant'])->name('client.restaurant.show');
+Route::get('menu/{menuId}', [ClientController::class, 'showMenu'])->name('client.menu.show');
 
 Route::get('myRestaurant', [RestaurantController::class, 'myRestaurant'])->name('myRestaurant');
 
