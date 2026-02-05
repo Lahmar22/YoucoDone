@@ -34,4 +34,12 @@ class Menu extends Model
             ->where('menu_id', $this->id)
             ->count();
     }
+
+    /**
+     * Get the restaurant that owns this menu
+     */
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
