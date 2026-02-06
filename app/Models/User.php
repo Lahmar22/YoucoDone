@@ -73,4 +73,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    /**
+     * Restaurants favorited by the user.
+     */
+    public function favoris()
+    {
+        return $this->belongsToMany(Restaurant::class, 'favoris', 'user_id', 'restaurant_id')->withTimestamps();
+    }
 }
