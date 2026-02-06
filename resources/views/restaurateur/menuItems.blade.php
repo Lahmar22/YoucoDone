@@ -39,9 +39,9 @@
                 Youco<span class="text-brand-orange">Done</span>
             </h1>
             <div class="flex items-center space-x-6">
-                <a href="{{ route('dashboard') }}" class="text-brand-orange hover:text-brand-dark font-medium">Home</a>
-                <a href="{{ route('myRestaurant') }}" class="text-brand-orange hover:text-brand-dark font-medium">My Restaurants</a>
-                <a href="{{ route('myMenu') }}" class="text-brand-orange hover:text-brand-dark font-medium">My menu</a>
+                <a href="{{ route('restaurateur.dashboard') }}" class="text-brand-orange hover:text-brand-dark font-medium">Home</a>
+                <a href="{{ route('restaurateur.myRestaurant') }}" class="text-brand-orange hover:text-brand-dark font-medium">My Restaurants</a>
+                <a href="{{ route('restaurateur.myMenu') }}" class="text-brand-orange hover:text-brand-dark font-medium">My menu</a>
             </div>
             <div class="flex items-center space-x-4">
                 <div class="relative" x-data="{ open: false }" @click.away="open = false">
@@ -72,7 +72,7 @@
         <!-- Header Section -->
         <div class="mb-12">
             <div class="flex items-center gap-3 mb-4">
-                <a href="{{ route('myMenu') }}" class="text-brand-orange hover:text-brand-dark transition">
+                <a href="{{ route('restaurateur.myMenu') }}" class="text-brand-orange hover:text-brand-dark transition">
                     <i data-lucide="arrow-left" class="w-6 h-6"></i>
                 </a>
                 <h1 class="font-serif text-4xl font-bold text-brand-dark">Menu Items</h1>

@@ -48,9 +48,9 @@
                 </h1>
             </div>
             <div class="flex items-center space-x-6">
-                <a href="{{ route('dashboard') }}" class="text-brand-orange hover:text-brand-dark font-medium">Home</a>
-                <a href="{{ route('myRestaurant') }}" class="text-brand-orange hover:text-brand-dark font-medium">My Restaurants</a>
-                <a href="{{ route('myMenu') }}" class="text-brand-orange hover:text-brand-dark font-medium">My menu</a>
+                <a href="{{ route('restaurateur.dashboard') }}" class="text-brand-orange hover:text-brand-dark font-medium">Home</a>
+                <a href="{{ route('restaurateur.myRestaurant') }}" class="text-brand-orange hover:text-brand-dark font-medium">My Restaurants</a>
+                <a href="{{ route('restaurateur.myMenu') }}" class="text-brand-orange hover:text-brand-dark font-medium">My menu</a>
             </div>
 
             <div class="flex items-center space-x-4">
