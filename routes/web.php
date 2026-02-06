@@ -63,3 +63,15 @@ Route::middleware('auth')->group(function () {
     Route::get('favorites', [FavorisController::class, 'index'])->name('favorites.index');
     Route::post('favorites/toggle/{restaurantId}', [FavorisController::class, 'toggle'])->name('favorites.toggle');
 });
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('admin', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('admin/profile', function () {
+        return view('admin.profile');
+    })->name('admin.profile');
+
+    Route::post('admin/logout', [LoginController::class, 'adminLogout'])->name('admin.logout');
+});
