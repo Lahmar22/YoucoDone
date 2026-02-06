@@ -99,6 +99,21 @@
                                     {{ $restaurant->cuisine_type }}
                                 </span>
                             </div>
+                            <div class="absolute top-4 right-4">
+                                @if(Auth::check())
+                                    @php $isFav = Auth::user()->favoris->contains($restaurant->id); @endphp
+                                    <form method="POST" action="{{ route('favorites.toggle', $restaurant->id) }}" class="favorite-form">
+                                        @csrf
+                                        <button type="submit" title="Toggle favorite" class="fav-btn p-2 rounded-full shadow transition-colors focus:outline-none {{ $isFav ? 'bg-red-500 text-white' : 'bg-white/90' }}">
+                                            <i data-lucide="heart" class="w-5 h-5 {{ $isFav ? 'text-white' : 'text-gray-400' }}"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}" title="Log in to favorite" class="p-2 rounded-full bg-white/90 shadow">
+                                        <i data-lucide="heart" class="w-5 h-5 text-gray-400"></i>
+                                    </a>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="p-8">
@@ -155,6 +170,27 @@
 
     <script>
         lucide.createIcons();
+    </script>
+    <script>
+        // Toggle visual favorite state immediately on click
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.fav-btn').forEach(function(btn) {
+                btn.addEventListener('click', function (e) {
+                    // optimistic UI: toggle classes immediately
+                    var isFav = btn.classList.contains('bg-red-500');
+                    if (isFav) {
+                        btn.classList.remove('bg-red-500','text-white');
+                        btn.classList.add('bg-white/90');
+                        var ico = btn.querySelector('i'); if (ico) { ico.classList.remove('text-white'); ico.classList.add('text-gray-400'); }
+                    } else {
+                        btn.classList.remove('bg-white/90');
+                        btn.classList.add('bg-red-500','text-white');
+                        var ico = btn.querySelector('i'); if (ico) { ico.classList.remove('text-gray-400'); ico.classList.add('text-white'); }
+                    }
+                    // allow form to submit normally (page may reload)
+                });
+            });
+        });
     </script>
 </body>
 </html>
