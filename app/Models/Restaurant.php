@@ -16,5 +16,12 @@ class Restaurant extends Model
         'users_id',
     ];
 
-    
+    /**
+     * Users who favorited this restaurant.
+     */
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favoris', 'restaurant_id', 'user_id')->withTimestamps();
+    }
+
 }
