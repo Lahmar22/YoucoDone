@@ -19,7 +19,7 @@ class MenuController extends Controller
         
         $menuItems = DB::table('menu_item')->get();
         
-        return view('myMenu', compact('restaurants', 'menus', 'menuItems'));
+        return view('restaurateur.myMenu', compact('restaurants', 'menus', 'menuItems'));
     }
 
      public function store(Request $request)
@@ -61,7 +61,7 @@ class MenuController extends Controller
             ->select('menu_item.*')
             ->get();
 
-        return view('menuItems', compact('menu', 'items'));
+        return view('restaurateur.menuItems', compact('menu', 'items'));
     }
 
     public function getMenuItems($menuId)

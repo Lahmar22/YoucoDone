@@ -7,10 +7,16 @@ use App\Models\Restaurant;
 
 class RestaurantController extends Controller
 {
+
+    public function dashboard()
+    {
+        return view('restaurateur.dashboard');
+    }
+
     public function myRestaurant()
     {
         $restaurants = Restaurant::where('users_id', auth()->id())->get();
-        return view('myRestaurant', compact('restaurants'));
+        return view('restaurateur.myRestaurant', compact('restaurants'));
     }
 
     
