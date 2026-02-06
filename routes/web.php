@@ -6,6 +6,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FavorisController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,3 +58,8 @@ Route::post('menus.itemsStore', [MenuController::class, 'itemsStore'])->name('me
 Route::delete('menus/{menu}', [MenuController::class, 'destroy'])->name('menus.destroy');
 
 Route::delete('menus/{menuId}/items/{itemId}', [MenuController::class, 'deleteItem'])->name('menus.deleteItem');
+
+Route::middleware('auth')->group(function () {
+    Route::get('favorites', [FavorisController::class, 'index'])->name('favorites.index');
+    Route::post('favorites/toggle/{restaurantId}', [FavorisController::class, 'toggle'])->name('favorites.toggle');
+});
