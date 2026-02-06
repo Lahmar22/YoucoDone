@@ -74,7 +74,7 @@ class LoginController extends Controller
             return redirect()->route('restaurateur.myRestaurant');
         }
 
-        return redirect()->intended('dashboard');
+        return redirect()->intended('welcome');
     }
 
     
@@ -90,8 +90,8 @@ class LoginController extends Controller
 
         
         Auth::guard('admin')->login($admin);
-
-        return redirect()->intended('dashboard');
+ 
+        return redirect()->route('admin.dashboard');
     }
 
     
@@ -103,6 +103,19 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Logout the admin guard and redirect to login.
+     */
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 }
 
