@@ -26,9 +26,9 @@ Route::get('restaurants', [ClientController::class, 'index'])->name('client.rest
 Route::get('restaurant/{restaurantId}', [ClientController::class, 'showRestaurant'])->name('client.restaurant.show');
 Route::get('menu/{menuId}', [ClientController::class, 'showMenu'])->name('client.menu.show');
 
-Route::get('myRestaurant', [RestaurantController::class, 'myRestaurant'])->name('myRestaurant');
-
-Route::get('myMenu', [MenuController::class, 'myMenu'])->name('myMenu');
+Route::get('myRestaurant', [RestaurantController::class, 'myRestaurant'])->name('restaurateur.myRestaurant');
+Route::get('restaurateur/dashboard', [RestaurantController::class, 'dashboard'])->name('restaurateur.dashboard');
+Route::get('myMenu', [MenuController::class, 'myMenu'])->name('restaurateur.myMenu');
 
 Route::middleware([
     'auth:sanctum',
